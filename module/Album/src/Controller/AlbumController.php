@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 namespace Album\Controller;
+
 use Album\Form\AlbumForm;
 use Album\Model\Album;
 use Album\Model\AlbumTable;
@@ -18,10 +19,22 @@ class AlbumController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel([
-            'albums' => $this->table->fetchAll(),
-        ]);
-        
+        // return new ViewModel([
+        //     'albums' => $this->table->fetchAll(),
+        // ]);
+        // Grab the paginator from the AlbumTable:
+        $paginator = $this->table->fetchAll(true);
+
+        // Set the current page to what has been passed in query string,
+        // or to 1 if none is set, or the page is invalid:
+        $page = (int) $this->params()->fromQuery('page', 1);
+        $page = ($page < 1) ? 1 : $page;
+        $paginator->setCurrentPageNumber($page);
+
+        // Set the number of items per page to 10:
+        $paginator->setItemCountPerPage(10);
+
+        return new ViewModel(['paginator' => $paginator]);
     }
 
     public function addAction()
@@ -31,7 +44,7 @@ class AlbumController extends AbstractActionController
 
         $request = $this->getRequest();
 
-        if (! $request->isPost()) {
+        if (!$request->isPost()) {
             return ['form' => $form];
         }
 
@@ -39,7 +52,7 @@ class AlbumController extends AbstractActionController
         $form->setInputFilter($album->getInputFilter());
         $form->setData($request->getPost());
 
-        if (! $form->isValid()) {
+        if (!$form->isValid()) {
             return ['form' => $form];
         }
 
@@ -72,14 +85,14 @@ class AlbumController extends AbstractActionController
         $request = $this->getRequest();
         $viewData = ['id' => $id, 'form' => $form];
 
-        if (! $request->isPost()) {
+        if (!$request->isPost()) {
             return $viewData;
         }
 
         $form->setInputFilter($album->getInputFilter());
         $form->setData($request->getPost());
 
-        if (! $form->isValid()) {
+        if (!$form->isValid()) {
             return $viewData;
         }
 
