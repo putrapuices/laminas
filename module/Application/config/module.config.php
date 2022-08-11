@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace Application;
-
+use Album\Controller\AlbumController;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -11,12 +11,23 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
 return [
     'router' => [
         'routes' => [
+            'hello-world' => [
+                'type' => Literal::class, // exact match of URI path
+                'options' => [
+                    'route' => '/hello/world', // URI path
+                    'defaults' => [
+                        'controller' => Controller\HelloController::class, // unique name
+                        'action'     => 'world',
+                    ],
+                ],
+            ],
             'home' => [
                 'type'    => Literal::class,
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        // 'controller' => Controller\IndexController::class,
+                        'controller' => AlbumController::class,
                         'action'     => 'index',
                     ],
                 ],
@@ -35,7 +46,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => InvokableFactory::class,       
+            Controller\HelloController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [

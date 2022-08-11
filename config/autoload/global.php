@@ -13,5 +13,20 @@
  */
 
 return [
-    // ...
+    // 'db' => [
+    //     'driver' => 'Pdo_Mysql',
+    //     'dsn' => 'mysql:dbname=laminas;host=localhost',
+    //     'username' => 'root',
+    //     'password' => '',
+    // ]
+    'db' => [
+        'driver' => 'Pdo',
+        'dsn'    => 'mysql:dbname=laminastutorial;host=localhost;charset=utf8',
+        'username' => 'root',
+        'password' => '',
+    ],
+    // 'db' => [
+    //     'driver' => 'Pdo',
+    //     'dsn'    => sprintf('sqlite:%s/data/laminastutorial.db', realpath(getcwd())),
+    // ],
 ];
