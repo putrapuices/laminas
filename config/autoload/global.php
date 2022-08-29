@@ -29,4 +29,14 @@ return [
     //     'driver' => 'Pdo',
     //     'dsn'    => sprintf('sqlite:%s/data/laminastutorial.db', realpath(getcwd())),
     // ],
+    'translator' => [
+        'locale' => 'en_US',
+        'translation_file_patterns' => [
+            [
+                'type'     => 'gettext',
+                'base_dir' => getcwd() .  '/data/language',
+                'pattern'  => '%s.mo',
+            ],
+        ],
+    ],
 ];

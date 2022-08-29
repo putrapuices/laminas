@@ -12,7 +12,7 @@
     "require": {
         "php": "^7.4 || ~8.0.0 || ~8.1.0",
         "laminas/laminas-component-installer": "^2.4",
-        "laminas/laminas-development-mode": "^3.2",
+        "laminas/laminas-development-mode": "^3.8",
         "laminas/laminas-skeleton-installer": "^0.6",
         "laminas/laminas-mvc": "^3.1.1",
         "laminas/laminas-db": "^2.12.0",
@@ -26,12 +26,15 @@
         "laminas/laminas-session": "^2.10.0",
         "laminas/laminas-di": "^3.2.2",
         "laminas/laminas-navigation": "^2.14",
-        "laminas/laminas-paginator": "^2.13"
+        "laminas/laminas-paginator": "^2.13",
+        "laminas/laminas-i18n": "^2.14.0",
+        "laminas/laminas-servicemanager": "^3.16"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Album\\": "module/Album/src/"
+            "Album\\": "module/Album/src/",
+            "Blog\\": "module/Blog/src/"
         }
     },
     "autoload-dev": {

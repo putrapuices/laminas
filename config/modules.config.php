@@ -29,4 +29,5 @@ return [
     'Laminas\Diactoros',
     'Application',
     'Album',
+    'Blog',
 ];
